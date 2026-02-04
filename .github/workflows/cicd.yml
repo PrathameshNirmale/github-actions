@@ -24,6 +24,7 @@ jobs:
         run: mvn -B compile --no-transfer-progress
 
       # ------------------ Trivy Installation ------------------
+      - needs: compile
       - name: Trivy Installation
         run: |
           sudo apt-get update -y

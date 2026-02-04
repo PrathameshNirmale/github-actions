@@ -17,3 +17,6 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: maven complile
+      run: mvn compile
+      

@@ -6,7 +6,7 @@ on:
 
 jobs:
   compile:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
 
@@ -21,7 +21,7 @@ jobs:
         run: mvn compile
 
   security-check:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: compile
     steps:
       - name: Checkout code
@@ -30,7 +30,7 @@ jobs:
           fetch-depth: 0 
 
   trivy-install:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: security-check
     steps:
       - name: Checkout code
@@ -49,7 +49,7 @@ jobs:
         run: trivy fs --format table -o fs-report.txt .
         
   gitleaks-install:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: trivy-install
     steps:
       - name: Checkout code
